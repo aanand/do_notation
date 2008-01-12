@@ -1,0 +1,18 @@
+Haskell-style monad do-notation for Ruby
+
+By Aanand Prasad (aanand.prasad@gmail.com)
+
+A first attempt, nervous and shaky. It is liable
+to drop its cigarette in fear if you look it
+too closely in the eye.
+
+Its biggest failing, and I don't see a way
+out, is that you don't get lexical scope. ParseTree
+is wonderful, but it can't work miracles.
+
+You can work around it, though, by passing in
+stuff from the outside as arguments to `run',
+and specifying those arguments on the block
+you pass in as well.
+
+Examples at the bottom.
