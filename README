@@ -1,10 +1,27 @@
 Haskell-style monad do-notation for Ruby
 
-By Aanand Prasad (aanand.prasad@gmail.com)
+Example:
 
-A first attempt, nervous and shaky. It is liable
-to drop its cigarette in fear if you look it
-too closely in the eye.
+    class Array
+      extend Monad
+      
+      def self.unit x
+        [x]
+      end
+      
+      def bind &f
+        map(&f).inject([]){ |a,b| a+b }
+      end
+    end
+    
+    Array.run do
+      x <- ['A', 'a']
+      y <- ['B', 'b']
+      
+      unit(x+y)
+    end
+    
+    # => ["AB", "Ab", "aB", "ab"]
 
 Its biggest failing, and I don't see a way
 out, is that you don't get lexical scope. ParseTree
@@ -15,4 +32,6 @@ stuff from the outside as arguments to `run',
 and specifying those arguments on the block
 you pass in as well.
 
-Examples at the bottom.
+For more examples, see the test suite.
+
+By Aanand Prasad (aanand.prasad@gmail.com)

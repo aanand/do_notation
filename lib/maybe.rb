@@ -1,4 +1,6 @@
-class Maybe < Monad
+class Maybe
+  extend Monad
+  
   class << self
     alias_method :nothing, :new
     alias_method :just, :new

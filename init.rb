@@ -1,3 +1,3 @@
-require 'lib/monad'
-require 'lib/maybe'
-require 'lib/list'
+%w(monad maybe array).each do |file|
+  require File.join(File.dirname(__FILE__), 'lib', file)
+end

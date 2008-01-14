@@ -2,9 +2,9 @@ require File.join(File.dirname(__FILE__), %w(.. init))
 
 describe "Maybe:" do
   specify "one or more `nothing's results in `nothing'" do
-    maybe = Maybe.run do |m|
-      x =m just(1)
-      y =m nothing
+    maybe = Maybe.run do
+      x <- just(1)
+      y <- nothing
   
       unit(x+y)
     end
@@ -13,9 +13,9 @@ describe "Maybe:" do
   end
 
   specify "all `just' results in `just'" do
-    maybe = Maybe.run do |m|
-      x =m just(1)
-      y =m just(2)
+    maybe = Maybe.run do
+      x <- just(1)
+      y <- just(2)
   
       unit(x+y)
     end
@@ -24,16 +24,16 @@ describe "Maybe:" do
   end
 end
 
-describe "List:" do
+describe "Array:" do
   specify "all results are calculated and concatenated" do
-    list = List.run do |m|
-      x =m list(1,2,3)
-      y =m list(10,20,30)
+    array = Array.run do
+      x <- [1,2,3]
+      y <- [10,20,30]
 
       unit(x+y)
     end
 
-    list.should == List.list(11, 21, 31, 12, 22, 32, 13, 23, 33)
+    array.should == [11, 21, 31, 12, 22, 32, 13, 23, 33]
   end
 end
 
@@ -41,13 +41,38 @@ describe "Monad.run" do
   specify "should pass extra arguments into the block" do
     foo = 100
 
-    list = List.run(foo) do |m, foo|
-      x =m list(1,2,3)
-      y =m list(10,20,30)
+    array = Array.run(foo) do |foo|
+      x <- [1,2,3]
+      y <- [10,20,30]
 
       unit(x+y+foo)
     end
 
-    list.should == List.list(111, 121, 131, 112, 122, 132, 113, 123, 133)
+    array.should == [111, 121, 131, 112, 122, 132, 113, 123, 133]
+  end
+  
+  specify "should be nestable" do
+    array = Array.run do
+      x <- Array.run do
+        a <- ['A','a']
+        b <- ['B','b']
+
+        unit(a+b)
+      end
+
+      y <- Array.run do
+        a <- ['C','c']
+        b <- ['D','d']
+
+        unit(a+b)
+      end
+
+      unit(x+y)
+    end
+    
+    array.should == ["ABCD", "ABCd", "ABcD", "ABcd",
+                     "AbCD", "AbCd", "AbcD", "Abcd",
+                     "aBCD", "aBCd", "aBcD", "aBcd",
+                     "abCD", "abCd", "abcD", "abcd"]
   end
 end
