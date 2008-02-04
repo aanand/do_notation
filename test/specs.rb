@@ -53,14 +53,14 @@ describe "Monad.run" do
   
   specify "should be nestable" do
     array = Array.run do
-      x <- Array.run do
+      x <- run do
         a <- ['A','a']
         b <- ['B','b']
 
         unit(a+b)
       end
 
-      y <- Array.run do
+      y <- run do
         a <- ['C','c']
         b <- ['D','d']
 
