@@ -2,38 +2,20 @@ class Maybe
   extend Monad
   
   class << self
-    alias_method :nothing, :new
-    alias_method :just, :new
-    alias_method :unit, :just
+    alias_method :unit, :new
   end
   
-  attr_accessor :value, :nothing
+  attr_accessor :value
   
-  def initialize *args
-    if args.empty?
-      @nothing = true
-    else
-      @value = args.shift
-    end
+  def initialize value
+    @value = value
   end
   
-  def ==(m)
-    m.is_a? Maybe and ((nothing and m.nothing) or (value = m.value))
-  end
-    
   def bind &f
-    if self.nothing
+    if value.nil?
       self
     else
-      f.call(self.value)
-    end
-  end
-  
-  def to_s
-    if @nothing
-      "nothing"
-    else
-      "just(#{@value})"
+      f.call(value)
     end
   end
 end
