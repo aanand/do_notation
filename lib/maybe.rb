@@ -1,14 +1,8 @@
-class Maybe
+class Maybe < Struct.new(:value)
   extend Monad
   
   class << self
     alias_method :unit, :new
-  end
-  
-  attr_accessor :value
-  
-  def initialize value
-    @value = value
   end
   
   def bind &f
