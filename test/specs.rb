@@ -1,41 +1,5 @@
 require File.join(File.dirname(__FILE__), %w(.. init))
-
-describe "Maybe:" do
-  specify "one or more nils results in nil" do
-    maybe = Maybe.run do
-      x <- unit(1)
-      y <- unit(nil)
-  
-      unit(x+y)
-    end
-
-    maybe.value.should == nil
-  end
-
-  specify "all non-nil results in complete calculation" do
-    maybe = Maybe.run do
-      x <- unit(1)
-      y <- unit(2)
-  
-      unit(x+y)
-    end
-    
-    maybe.value.should == 3
-  end
-end
-
-describe "Array:" do
-  specify "all results are calculated and concatenated" do
-    array = Array.run do
-      x <- [1,2,3]
-      y <- [10,20,30]
-
-      unit(x+y)
-    end
-
-    array.should == [11, 21, 31, 12, 22, 32, 13, 23, 33]
-  end
-end
+require File.join(File.dirname(__FILE__), %w(.. lib array))
 
 describe "Monad.run" do
   specify "should pass extra arguments into the block" do

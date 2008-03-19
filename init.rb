@@ -1,3 +1,3 @@
-%w(monad maybe array).each do |file|
-  require File.join(File.dirname(__FILE__), 'lib', file)
-end
+require 'rubygems'
+require 'lib/do_notation'
+require 'lib/monad'

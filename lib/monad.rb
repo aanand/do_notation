@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'ruby2ruby'
 
 require File.join(File.dirname(__FILE__), 'do_notation')

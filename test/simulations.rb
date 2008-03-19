@@ -1,5 +1,3 @@
-# to run: "spec test/simulations.rb"
-
 require File.join(File.dirname(__FILE__), %w(.. init))
 require File.join(File.dirname(__FILE__), %w(.. lib simulations))
 
