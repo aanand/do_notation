@@ -1,5 +1,5 @@
-require File.join(File.dirname(__FILE__), %w(.. init))
-require File.join(File.dirname(__FILE__), %w(.. lib array))
+require File.join(File.dirname(__FILE__), '..', 'init')
+require 'monads/array'
 
 describe "Array:" do
   specify "all results are calculated and concatenated" do

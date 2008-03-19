@@ -1,5 +1,5 @@
 require File.join(File.dirname(__FILE__), %w(.. init))
-require File.join(File.dirname(__FILE__), %w(.. lib maybe))
+require 'monads/maybe'
 
 describe "Maybe:" do
   specify "one or more nils results in nil" do

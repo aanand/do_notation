@@ -1,5 +1,5 @@
 require File.join(File.dirname(__FILE__), %w(.. init))
-require File.join(File.dirname(__FILE__), %w(.. lib array))
+require 'monads/array'
 
 describe "Monad.run" do
   specify "should pass extra arguments into the block" do

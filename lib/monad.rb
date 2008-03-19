@@ -1,7 +1,5 @@
 require 'ruby2ruby'
 
-require File.join(File.dirname(__FILE__), 'do_notation')
-
 module Monad
   def run *args, &block
     sexp = transform_sexp(block)

@@ -1,3 +1,5 @@
+$: << File.join(File.dirname(__FILE__), 'lib')
+
 require 'rubygems'
-require 'lib/do_notation'
-require 'lib/monad'
+require 'do_notation'
+require 'monad'

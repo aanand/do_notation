@@ -1,5 +1,5 @@
 require File.join(File.dirname(__FILE__), %w(.. init))
-require File.join(File.dirname(__FILE__), %w(.. lib simulations))
+require 'monads/simulations'
 
 roll_3d6 = proc do
   d1 <- rand(6)
