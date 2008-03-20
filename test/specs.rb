@@ -52,3 +52,17 @@ describe "Monad.run" do
                      "abCD", "abCd", "abcD", "abcd"]
   end
 end
+
+describe "DoNotation.pp" do
+  specify "should produce correct output" do
+    array = [:a, [:b],
+                 [:c, :d,
+                      :e]]
+
+    DoNotation.pp(array).should == <<CODE.strip
+(:a (:b)
+    (:c :d
+        :e))
+CODE
+  end
+end
