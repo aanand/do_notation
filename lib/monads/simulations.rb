@@ -12,14 +12,12 @@ class Simulation
   
   attr_reader :f
 
-  def initialize(&b); @f = b end
-  def self.unit(x); new{|s| [x, s]} end
+  def initialize(&b)
+    @f = b
+  end
   
-  def bind(&b)
-    self.class.new do |s|
-      x, s = @f.call(s)
-      b.call(x).f.call(s)
-    end
+  def self.unit(x)
+    new { |s| [x, s] }
   end
   
   def self.rand(n)
@@ -28,7 +26,16 @@ class Simulation
     end
   end
 
-  def play(s = 12345); @f.call(s).first end
+  def bind(&b)
+    self.class.new do |s|
+      x, s = @f.call(s)
+      b.call(x).f.call(s)
+    end
+  end
+  
+  def play(s = 12345)
+    @f.call(s).first
+  end
 end
 
 class Distribution
@@ -37,9 +44,22 @@ class Distribution
   
   attr_reader :a
 
-  def initialize(a); @a = a end
-  def self.wrap(a); new(a) end
-  def self.unit(x); wrap [[x, 1.0]] end
+  def initialize(a)
+    @a = a
+  end
+  
+  def self.wrap(a)
+    new(a)
+  end
+  
+  def self.unit(x)
+    wrap [[x, 1.0]]
+  end
+
+  def self.rand(n) 
+    p = 1.0 / n
+    new((0...n).map{|i| [i, p]})
+  end
 
   def bind(&b)
     if @a.empty?
@@ -48,11 +68,6 @@ class Distribution
       x, p = @a[0]
       self.class.wrap(mulp(p, b.call(x)) + self.class.new(@a[1..-1]).bind(&b).a)
     end
-  end
-
-  def self.rand(n) 
-    p = 1.0 / n
-    new((0...n).map{|i| [i, p]})
   end
 
   def play
@@ -73,13 +88,16 @@ class Expectation
   
   attr_reader :f
 
-  def initialize(&b); @f = b end
-  def self.wrap(&proc); new(&proc) end
+  def initialize(&b)
+    @f = b
+  end
+  
+  def self.wrap(&proc)
+    new(&proc)
+  end
 
-  def self.unit(x); wrap{|f| f.call(x) } end
-
-  def bind(&b)
-    self.class.wrap{|k| @f.call(lambda{|x| b.call(x).f.call(k)}) }
+  def self.unit(x)
+    wrap{ |f| f.call(x) }
   end
 
   def self.rand(n)
@@ -87,6 +105,10 @@ class Expectation
       sum = (0..n-1).map{|x| k.call(x)}.inject{|s,x| s+x}
       1.0 * sum / n
     end
+  end
+
+  def bind(&b)
+    self.class.wrap{|k| @f.call(lambda{|x| b.call(x).f.call(k)}) }
   end
 
   def play(x)
