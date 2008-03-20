@@ -3,28 +3,34 @@ require 'monads/array'
 
 describe "Monad.run" do
   specify "should pass extra arguments into the block" do
-    foo = 8000
+    foo = "cousin"
+    bar = "removed"
+
+    expected_result = ["first cousin once removed",
+                       "first cousin twice removed",
+                       "second cousin once removed",
+                       "second cousin twice removed"]
+
+    # explicitly test the 1-argument case, because
+    # it generates a subtly different parse tree
 
     array = Array.run(foo) do |foo|
-      x <- [1,2,3]
-      y <- [10,20,30]
+      x <- ["first", "second"]
+      y <- ["once", "twice"]
 
-      unit(x+y+foo)
+      unit("#{x} #{foo} #{y} removed")
     end
 
-    array.should == [8011, 8021, 8031, 8012, 8022, 8032, 8013, 8023, 8033]
+    array.should == expected_result
     
-    foo = 8000
-    bar = 70000
-
     array = Array.run(foo, bar) do |foo, bar|
-      x <- [1,2,3]
-      y <- [10,20,30]
+      x <- ["first", "second"]
+      y <- ["once", "twice"]
 
-      unit(x+y+foo+bar)
+      unit("#{x} #{foo} #{y} #{bar}")
     end
 
-    array.should == [78011, 78021, 78031, 78012, 78022, 78032, 78013, 78023, 78033]
+    array.should == expected_result
   end
   
   specify "should be nestable" do

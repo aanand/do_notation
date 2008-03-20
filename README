@@ -16,13 +16,18 @@ Example:
     end
     
     Array.run do
-      x <- ['A', 'a']
-      y <- ['B', 'b']
-      
-      unit(x+y)
+      x <- ["first", "second"]
+      y <- ["once", "twice"]
+  
+      unit("#{x} cousin #{y} removed")
     end
-    
-    # => ["AB", "Ab", "aB", "ab"]
+
+The above code returns the array:
+
+    ["first cousin once removed",
+     "first cousin twice removed",
+     "second cousin once removed",
+     "second cousin twice removed"]
 
 Its biggest failing, and I don't see a way
 out, is that you don't get lexical scope. ParseTree

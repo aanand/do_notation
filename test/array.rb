@@ -4,12 +4,15 @@ require 'monads/array'
 describe "Array:" do
   specify "all results are calculated and concatenated" do
     array = Array.run do
-      x <- [1,2,3]
-      y <- [10,20,30]
-
-      unit(x+y)
+      x <- ["first", "second"]
+      y <- ["once", "twice"]
+  
+      unit("#{x} cousin #{y} removed")
     end
 
-    array.should == [11, 21, 31, 12, 22, 32, 13, 23, 33]
+    array.should == ["first cousin once removed",
+                     "first cousin twice removed",
+                     "second cousin once removed",
+                     "second cousin twice removed"]
   end
 end
