@@ -15,7 +15,10 @@ roll_3d6_b = proc do
   d3 <- rand(6)
   
   if [d1, d2, d3].include?(5)
-    rand(6).bind{|d4| unit(1+d1 + 1+d2 + 1+d3 + 1+d4) }
+    run do
+      d4 <- rand(6)
+      unit(1+d1 + 1+d2 + 1+d3 + 1+d4)
+    end
   else
     unit(1+d1 + 1+d2 + 1+d3)
   end

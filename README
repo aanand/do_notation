@@ -29,15 +29,6 @@ The above code returns the array:
      "second cousin once removed",
      "second cousin twice removed"]
 
-Its biggest failing, and I don't see a way
-out, is that you don't get lexical scope. ParseTree
-is wonderful, but it can't work miracles.
-
-You can work around it, though, by passing in
-stuff from the outside as arguments to `run',
-and specifying those arguments on the block
-you pass in as well.
-
 For more examples, see the test suite.
 
 By Aanand Prasad (aanand.prasad@gmail.com)

@@ -5,17 +5,7 @@ class DoNotation < SexpProcessor
   def process_bmethod exp
     type = exp.shift
     
-    if arg_assignment = process(exp.shift)
-      if arg_assignment.first == :dasgn or arg_assignment.first == :dasgn_curr
-        args = [arg_assignment[1]]
-      elsif arg_assignment.first == :masgn
-        args = arg_assignment[1][1..-1].collect { |e| e[1] }
-      else
-        raise DoNotationError, "I can't parse this block :("
-      end
-    else
-      args = []
-    end
+    exp.shift # throw away arguments
     
     block = process(exp.shift)
     
@@ -24,7 +14,7 @@ class DoNotation < SexpProcessor
     
     s(:scope,
       s(:block,
-        s(:args, *args),
+        s(:args),
         *rewrite_assignments(block)))
   end
   

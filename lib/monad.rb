@@ -1,10 +1,13 @@
 require 'ruby2ruby'
 
 module Monad
-  def run *args, &block
-    sexp = transform_sexp(block)
-    ruby = generate_ruby(sexp)
-    eval(ruby).call(*args)
+  def run &block
+    eval(ruby_for(block), block).call
+  end
+  
+  def ruby_for block
+    @cached_ruby ||= {}
+    @cached_ruby[block.to_s] ||= "#{self.name}.instance_eval { #{generate_ruby(transform_sexp(block))} }"
   end
   
   def transform_sexp block
