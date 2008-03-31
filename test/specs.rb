@@ -29,10 +29,10 @@ describe "Monad.run" do
       end
 
       y <- run do
-        a <- ['C','c']
-        b <- ['D','d']
+        c <- ['C','c']
+        d <- ['D','d']
 
-        unit(a+b)
+        unit(c+d)
       end
 
       unit(x+y)
