@@ -1,5 +1,5 @@
-require File.join(File.dirname(__FILE__), %w(.. init))
-require 'monads/maybe'
+require File.join(File.dirname(__FILE__), 'spec_helper')
+require 'do_notation/monads/maybe'
 
 describe "Maybe:" do
   specify "one or more nils results in nil" do

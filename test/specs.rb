@@ -1,5 +1,5 @@
-require File.join(File.dirname(__FILE__), %w(.. init))
-require 'monads/array'
+require File.join(File.dirname(__FILE__), 'spec_helper')
+require 'do_notation/monads/array'
 
 describe "Monad.run" do
   specify "should have lexical scope" do
@@ -45,13 +45,13 @@ describe "Monad.run" do
   end
 end
 
-describe "DoNotation.pp" do
+describe "Rewriter.pp" do
   specify "should produce correct output" do
     array = [:a, [:b],
                  [:c, :d,
                       :e]]
 
-    DoNotation.pp(array).should == <<CODE.strip
+    Rewriter.pp(array).should == <<CODE.strip
 (:a (:b)
     (:c :d
         :e))

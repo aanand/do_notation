@@ -1,5 +1,3 @@
-require 'ruby2ruby'
-
 module Monad
   def run &block
     eval(ruby_for(block), block).call
@@ -11,7 +9,7 @@ module Monad
   end
   
   def transform_sexp block
-    DoNotation.new.process(block.to_method.to_sexp)
+    Rewriter.new.process(block.to_method.to_sexp)
   end
   
   # gnarly text munging copied & pasted from ruby2ruby source

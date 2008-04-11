@@ -1,5 +1,5 @@
-require File.join(File.dirname(__FILE__), %w(.. init))
-require 'monads/simulations'
+require File.join(File.dirname(__FILE__), 'spec_helper')
+require 'do_notation/monads/simulations'
 
 roll_3d6 = proc do
   d1 <- rand(6)

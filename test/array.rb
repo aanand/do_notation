@@ -1,5 +1,5 @@
-require File.join(File.dirname(__FILE__), '..', 'init')
-require 'monads/array'
+require File.join(File.dirname(__FILE__), 'spec_helper')
+require 'do_notation/monads/array'
 
 describe "Array:" do
   specify "all results are calculated and concatenated" do
