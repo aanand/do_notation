@@ -1,24 +1,24 @@
 module Monad
-  def run &block
-    eval(ruby_for(block), block).call
+  module ClassMethods
+    def run &block
+      eval(ruby_for(block), block).call
+    end
+
+    def ruby_for block
+      @cached_ruby ||= {}
+      @cached_ruby[block.to_s] ||= "#{self.name}.instance_eval { #{Ruby2Ruby.new.process(Rewriter.new.process(block.to_method.to_sexp)[2])} }"
+    end
   end
-  
-  def ruby_for block
-    @cached_ruby ||= {}
-    @cached_ruby[block.to_s] ||= "#{self.name}.instance_eval { #{generate_ruby(transform_sexp(block))} }"
+
+  def bind_const &block
+    bind { |_| block.call() }
   end
-  
-  def transform_sexp block
-    Rewriter.new.process(block.to_method.to_sexp)
+
+  def >> n
+    bind_const { n }
   end
-  
-  # gnarly text munging copied & pasted from ruby2ruby source
-  def generate_ruby sexp
-    ruby = Ruby2Ruby.new.process(sexp)
-    ruby.sub!(/\A(def \S+)\(([^\)]*)\)/, '\1 |\2|')     # move args
-    ruby.sub!(/\Adef[^\n\|]+/, 'proc { ')               # strip def name
-    ruby.sub!(/end\Z/, '}')                             # strip end
-    ruby.gsub!(/\s+$/, '')                              # trailing WS bugs me
-    ruby
+
+  def self.included m
+    m.extend ClassMethods
   end
 end

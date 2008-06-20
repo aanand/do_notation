@@ -4,15 +4,15 @@ class Rewriter < SexpProcessor
   
     exp.shift # throw away arguments
   
-    block = process(exp.shift)
+    body = process(exp.shift)
   
-    assert_type block, :block
-    block.shift
-  
-    s(:scope,
-      s(:block,
-        s(:args),
-        *rewrite_assignments(block)))
+    if body[0] == :block
+       body.shift
+    else
+       body = s([*body])
+    end
+
+    s(:iter,  s(:fcall, :proc),  nil, *rewrite_assignments(body))
   end
 
   def rewrite_assignments exp
@@ -34,8 +34,11 @@ class Rewriter < SexpProcessor
          s(:call, process(expression), :bind),
          s(:dasgn_curr, var_name),
          *body)]
+    elsif exp.empty?
+      [process(head)]
     else
-      head + rewrite_assignments(exp)
+      [s(:iter, s(:call, process(head)  , :bind_const), nil , 
+             *rewrite_assignments(exp)) ]
     end
   end
 

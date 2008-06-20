@@ -1,5 +1,5 @@
 class Maybe < Struct.new(:value)
-  extend Monad
+  include Monad
   
   def self.unit value
     self.new(value)

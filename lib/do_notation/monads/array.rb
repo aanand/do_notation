@@ -1,6 +1,6 @@
 class Array
-  extend Monad
-  
+  include Monad
+
   def self.unit x
     [x]
   end

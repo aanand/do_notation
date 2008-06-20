@@ -45,6 +45,12 @@ describe "Monad.run" do
   end
 end
 
+describe 'Monad#>>' do
+  specify "should compose two values, discarding the first" do
+    ([1] >> [2]).should == [2]
+  end
+end
+
 describe "Rewriter.pp" do
   specify "should produce correct output" do
     array = [:a, [:b],

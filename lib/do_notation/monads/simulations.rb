@@ -8,7 +8,7 @@ end
 
 class Simulation
   extend PRNG
-  extend Monad
+  include Monad
   
   attr_reader :f
 
@@ -40,7 +40,7 @@ end
 
 class Distribution
   extend PRNG
-  extend Monad
+  include Monad
   
   attr_reader :a
 
@@ -84,7 +84,7 @@ end
 
 class Expectation
   extend PRNG
-  extend Monad
+  include Monad
   
   attr_reader :f
 

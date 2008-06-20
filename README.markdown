@@ -4,7 +4,7 @@ Haskell-style monad do-notation for Ruby
 Example:
 
     class Array
-      extend Monad
+      include Monad
       
       def self.unit x
         [x]
