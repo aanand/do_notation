@@ -22,6 +22,6 @@ Echoe.new('ruby-do-notation') do |p|
   p.summary = 'Haskell-style monad do-notation for Ruby'
   p.email = 'aanand.prasad@gmail.com'
   p.url = 'http://github.com/aanand/ruby-do-notation/tree/master'
-  p.version = '0.1'
+  p.version = '0.2'
   p.dependencies = ['ParseTree', 'ruby2ruby']
 end
