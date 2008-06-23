@@ -3,7 +3,6 @@
 Example:
 
     require 'do_notation'
-    require 'do_notation/monads/array'
 
     class Array
       include Monad
