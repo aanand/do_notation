@@ -1,7 +1,9 @@
-Haskell-style monad do-notation for Ruby
-========================================
+= Haskell-style monad do-notation for Ruby
 
 Example:
+
+    require 'do_notation'
+    require 'do_notation/monads/array'
 
     class Array
       include Monad
@@ -30,5 +32,12 @@ The above code returns the array:
      "second cousin twice removed"]
 
 For more examples, see the test suite.
+
+== Installation
+
+There's a gem hosted on Github, so follow the setup instructions
+at http://gems.github.com and then run:
+
+    sudo gem install aanand-ruby-do-notation
 
 By Aanand Prasad (aanand.prasad@gmail.com)
