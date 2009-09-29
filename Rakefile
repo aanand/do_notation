@@ -15,13 +15,18 @@ Spec::Rake::SpecTask.new('rcov') do |t|
   t.rcov = true
 end
 
-require 'echoe'
-
-Echoe.new('ruby-do-notation') do |p|
-  p.author = 'Aanand Prasad'
-  p.summary = 'Haskell-style monad do-notation for Ruby'
-  p.email = 'aanand.prasad@gmail.com'
-  p.url = 'http://github.com/aanand/ruby-do-notation/tree/master'
-  p.version = '0.2'
-  p.dependencies = ['ParseTree', 'ruby2ruby']
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "do-notation"
+    gemspec.summary = 'Haskell-style monad do-notation for Ruby'
+    gemspec.description = 'Haskell-style monad do-notation for Ruby'
+    gemspec.email = 'aanand.prasad@gmail.com'
+    gemspec.homepage = 'http://github.com/aanand/do-notation'
+    gemspec.authors = ["Aanand Prasad"]
+    gemspec.add_dependency('ParseTree')
+    gemspec.add_dependency('ruby2ruby', '1.1.9')
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
