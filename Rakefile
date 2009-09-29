@@ -27,6 +27,8 @@ begin
     gemspec.add_dependency('ParseTree')
     gemspec.add_dependency('ruby2ruby', '1.1.9')
   end
+
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end

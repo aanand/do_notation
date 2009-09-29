@@ -34,9 +34,6 @@ For more examples, see the test suite.
 
 == Installation
 
-There's a gem hosted on Github, so follow the setup instructions
-at http://gems.github.com and then run:
-
-    sudo gem install aanand-ruby-do-notation
+    gem install do_notation -s http://gemcutter.org
 
 By Aanand Prasad (aanand.prasad@gmail.com)
