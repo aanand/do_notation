@@ -18,11 +18,11 @@ end
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
-    gemspec.name = "do-notation"
+    gemspec.name = "do_notation"
     gemspec.summary = 'Haskell-style monad do-notation for Ruby'
     gemspec.description = 'Haskell-style monad do-notation for Ruby'
     gemspec.email = 'aanand.prasad@gmail.com'
-    gemspec.homepage = 'http://github.com/aanand/do-notation'
+    gemspec.homepage = 'http://github.com/aanand/do_notation'
     gemspec.authors = ["Aanand Prasad"]
     gemspec.add_dependency('ParseTree')
     gemspec.add_dependency('ruby2ruby', '1.1.9')

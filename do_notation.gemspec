@@ -4,7 +4,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{do-notation}
+  s.name = %q{do_notation}
   s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
      "Manifest",
      "README.rdoc",
      "Rakefile",
+     "VERSION",
+     "do_notation.gemspec",
      "lib/do_notation.rb",
      "lib/do_notation/monad.rb",
      "lib/do_notation/monad_plus.rb",
@@ -35,7 +37,7 @@ Gem::Specification.new do |s|
      "test/spec_helper.rb",
      "test/specs.rb"
   ]
-  s.homepage = %q{http://github.com/aanand/do-notation}
+  s.homepage = %q{http://github.com/aanand/do_notation}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.4}
