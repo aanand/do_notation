@@ -1,17 +1,17 @@
-require 'spec/rake/spectask'
+require 'rspec/core/rake_task'
 
-spec_list = FileList['test/*.rb']
+spec_pattern = 'test/*.rb'
 
 task :default => :spec
 
 desc "Run all specs"
-Spec::Rake::SpecTask.new('spec') do |t|
-  t.spec_files = spec_list
+RSpec::Core::RakeTask.new('spec') do |t|
+  t.pattern = spec_pattern
 end
 
 desc "Run all specs with RCov"
-Spec::Rake::SpecTask.new('rcov') do |t|
-  t.spec_files = spec_list
+RSpec::Core::RakeTask.new('rcov') do |t|
+  t.pattern = spec_pattern
   t.rcov = true
 end
 
