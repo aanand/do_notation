@@ -7,7 +7,7 @@ describe "Array:" do
       x <- ["first", "second"]
       y <- ["once", "twice"]
 
-      unit("#{x} cousin #{y} removed")
+      ["#{x} cousin #{y} removed"]
     end
 
     array.should == ["first cousin once removed",

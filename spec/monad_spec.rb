@@ -12,7 +12,7 @@ describe "Monad.run" do
       x <- ["first", "second"]
       y <- ["once", "twice"]
 
-      unit("#{x} #{foo} #{y} #{bar}")
+      ["#{x} #{foo} #{y} #{bar}"]
     end
 
     array.should == ["first cousin once removed",
@@ -38,17 +38,17 @@ describe "Monad.run" do
         a <- ['A','a']
         b <- ['B','b']
 
-        unit(a+b)
+        [a+b]
       end
 
       y <- run do
         c <- ['C','c']
         d <- ['D','d']
 
-        unit(c+d)
+        [c+d]
       end
 
-      unit(x+y)
+      [x+y]
     end
 
     array.should == ["ABCD", "ABCd", "ABcD", "ABcd",
