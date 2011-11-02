@@ -33,7 +33,8 @@ The above code returns the array:
 
 For more examples, see the test suite.
 
-== Installation
+Installation
+============
 
     gem install do_notation
 
