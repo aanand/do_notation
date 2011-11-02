@@ -47,6 +47,27 @@ describe "Rewriter" do
     process(in_block.to_sexp).should == out_block.to_sexp
   end
 
+  it "rewrites statements without a <- to use bind_const" do
+    in_block  = proc do
+      x <- 1
+      do_something
+      y <- 2
+      z
+    end
+
+    out_block = proc do
+      1.bind do |x|
+        do_something.bind_const do
+          2.bind do |y|
+            z
+          end
+        end
+      end
+    end
+
+    process(in_block.to_sexp).should == out_block.to_sexp
+  end
+
   def process(sexp)
     DoNotation::Rewriter.new.process(sexp)
   end

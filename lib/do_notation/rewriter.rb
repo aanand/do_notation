@@ -41,8 +41,10 @@ class DoNotation::Rewriter
     elsif exp.empty?
       [head]
     else
-      [s(:iter, s(:call, process(head)  , :bind_const), nil , 
-             *rewrite_assignments(exp)) ]
+      [s(:iter,
+         s(:call, head, :bind_const, s(:arglist)),
+         nil,
+         *rewrite_assignments(exp))]
     end
   end
 end
