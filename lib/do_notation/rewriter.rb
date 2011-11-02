@@ -1,4 +1,4 @@
-class Rewriter < SexpProcessor
+class DoNotation::Rewriter < SexpProcessor
   def process_bmethod exp
     type = exp.shift
   

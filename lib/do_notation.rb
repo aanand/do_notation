@@ -2,9 +2,6 @@ require 'parse_tree'
 require 'sexp_processor'
 require 'ruby2ruby'
 
-require 'do_notation/rewriter'
-require 'do_notation/monad'
-
 module DoNotation
   def self.pp(obj, indent='')
     return obj.inspect unless obj.is_a? Array
@@ -25,4 +22,7 @@ module DoNotation
     str
   end
 end
+
+require 'do_notation/rewriter'
+require 'do_notation/monad'
 
