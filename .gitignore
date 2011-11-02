@@ -3,3 +3,4 @@ coverage
 doc
 *.tmproj
 *.gem
+Gemfile.lock

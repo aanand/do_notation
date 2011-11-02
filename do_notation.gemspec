@@ -5,10 +5,13 @@ Gem::Specification.new do |s|
   s.email = 'aanand.prasad@gmail.com'
   s.homepage = 'https://github.com/aanand/do_notation'
   s.authors = ["Aanand Prasad"]
-  s.add_dependency('ParseTree')
-  s.add_dependency('ruby2ruby', '1.1.9')
 
   s.extra_rdoc_files = ["README.rdoc"]
   s.files = `git ls-files`.split
   s.require_paths = ["lib"]
+
+  s.add_dependency('ParseTree')
+  s.add_dependency('ruby2ruby', '1.1.9')
+  s.add_development_dependency('rake')
+  s.add_development_dependency('rspec', '~> 2.0')
 end
