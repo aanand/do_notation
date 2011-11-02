@@ -1,12 +1,7 @@
 module Monad
   module ClassMethods
     def run &block
-      eval(ruby_for(block), block).call
-    end
-
-    def ruby_for block
-      @cached_ruby ||= {}
-      @cached_ruby[block.to_s] ||= "#{self.name}.instance_eval { #{Ruby2Ruby.new.process(DoNotation::Rewriter.new.process(block.to_sexp))} }"
+      DoNotation.run(self, &block)
     end
   end
 
