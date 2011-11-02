@@ -2,7 +2,7 @@ require 'sourcify'
 
 module DoNotation
   def self.run(klass, &block)
-    eval(ruby_for(klass, block), block).call
+    eval(ruby_for(klass, block), block.binding).call
   end
 
   def self.ruby_for(klass, block)
