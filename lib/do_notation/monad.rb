@@ -6,7 +6,7 @@ module Monad
 
     def ruby_for block
       @cached_ruby ||= {}
-      @cached_ruby[block.to_s] ||= "#{self.name}.instance_eval { #{Ruby2Ruby.new.process(DoNotation::Rewriter.new.process(block.to_method.to_sexp)[2])} }"
+      @cached_ruby[block.to_s] ||= "#{self.name}.instance_eval { #{Ruby2Ruby.new.process(DoNotation::Rewriter.new.process(block.to_sexp))} }"
     end
   end
 

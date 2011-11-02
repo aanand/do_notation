@@ -10,8 +10,7 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split
   s.require_paths = ["lib"]
 
-  s.add_dependency('ParseTree')
-  s.add_dependency('ruby2ruby', '1.1.9')
+  s.add_dependency('sourcify')
   s.add_development_dependency('rake')
   s.add_development_dependency('rspec', '~> 2.0')
 end
