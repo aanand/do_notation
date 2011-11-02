@@ -13,7 +13,7 @@ Example:
       end
 
       def bind &f
-        map(&f).inject([]){ |a,b| a+b }
+        map(&f).inject([], &:+)
       end
     end
 
