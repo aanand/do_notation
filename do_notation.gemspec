@@ -6,9 +6,7 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/aanand/do_notation'
   s.authors  = ["Aanand Prasad"]
 
-  s.extra_rdoc_files = ["README.rdoc"]
   s.files = `git ls-files`.split
-  s.require_paths = ["lib"]
 
   s.add_dependency('sourcify')
   s.add_development_dependency('rake')
