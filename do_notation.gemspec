@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "do_notation"
-  s.version = "0.2.0"
+  s.version = "0.3.0"
   s.summary = 'Haskell-style monad do-notation for Ruby'
   s.email = 'aanand.prasad@gmail.com'
   s.homepage = 'https://github.com/aanand/do_notation'
