@@ -1,4 +1,5 @@
-= Haskell-style monad do-notation for Ruby
+Haskell-style monad do-notation for Ruby
+========================================
 
 Example:
 
@@ -37,4 +38,3 @@ For more examples, see the test suite.
     gem install do_notation
 
 By Aanand Prasad (aanand.prasad@gmail.com)
-Probably won't work in Ruby 1.9.
