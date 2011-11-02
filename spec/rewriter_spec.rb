@@ -20,9 +20,6 @@ describe "Rewriter" do
       end
     end
 
-    # puts DoNotation.pp(in_block.to_sexp)
-    # puts DoNotation.pp(out_block.to_sexp)
-
     process(in_block.to_sexp).should == out_block.to_sexp
   end
 
@@ -40,9 +37,6 @@ describe "Rewriter" do
         end
       end
     end
-
-    # puts DoNotation.pp(in_block.to_sexp)
-    # puts DoNotation.pp(out_block.to_sexp)
 
     process(in_block.to_sexp).should == out_block.to_sexp
   end

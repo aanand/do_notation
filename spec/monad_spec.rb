@@ -50,7 +50,7 @@ describe "Monad.run" do
 
       unit(x+y)
     end
-    
+
     array.should == ["ABCD", "ABCd", "ABcD", "ABcd",
                      "AbCD", "AbCd", "AbcD", "Abcd",
                      "aBCD", "aBCd", "aBcD", "aBcd",

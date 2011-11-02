@@ -6,7 +6,7 @@ describe "Array:" do
     array = Array.run do
       x <- ["first", "second"]
       y <- ["once", "twice"]
-  
+
       unit("#{x} cousin #{y} removed")
     end
 

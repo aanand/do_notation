@@ -6,7 +6,7 @@ describe "Maybe:" do
     maybe = Maybe.run do
       x <- unit(1)
       y <- unit(nil)
-  
+
       unit(x+y)
     end
 
@@ -17,10 +17,10 @@ describe "Maybe:" do
     maybe = Maybe.run do
       x <- unit(1)
       y <- unit(2)
-  
+
       unit(x+y)
     end
-    
+
     maybe.value.should == 3
   end
 end

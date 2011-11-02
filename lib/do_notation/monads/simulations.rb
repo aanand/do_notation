@@ -2,24 +2,24 @@
 # http://eigenclass.org/hiki/warm-fuzzy-things-for-random-simulations
 # http://eigenclass.org/hiki.rb?c=plugin;plugin=attach_download;p=warm-fuzzy-things-for-random-simulations;file_name=fuzzy-warm-simulations.rb
 
-module PRNG 
+module PRNG
   def next_state(s); (69069 * s + 5) % (2**32) end
 end
 
 class Simulation
   extend PRNG
   include Monad
-  
+
   attr_reader :f
 
   def initialize(&b)
     @f = b
   end
-  
+
   def self.unit(x)
     new { |s| [x, s] }
   end
-  
+
   def self.rand(n)
     self.new do |s|
       [s.abs % n, next_state(s)]
@@ -32,7 +32,7 @@ class Simulation
       b.call(x).f.call(s)
     end
   end
-  
+
   def play(s = 12345)
     @f.call(s).first
   end
@@ -41,22 +41,22 @@ end
 class Distribution
   extend PRNG
   include Monad
-  
+
   attr_reader :a
 
   def initialize(a)
     @a = a
   end
-  
+
   def self.wrap(a)
     new(a)
   end
-  
+
   def self.unit(x)
     wrap [[x, 1.0]]
   end
 
-  def self.rand(n) 
+  def self.rand(n)
     p = 1.0 / n
     new((0...n).map{|i| [i, p]})
   end
@@ -85,13 +85,13 @@ end
 class Expectation
   extend PRNG
   include Monad
-  
+
   attr_reader :f
 
   def initialize(&b)
     @f = b
   end
-  
+
   def self.wrap(&proc)
     new(&proc)
   end

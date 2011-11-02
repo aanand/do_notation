@@ -5,7 +5,7 @@ roll_3d6 = proc do
   d1 <- rand(6)
   d2 <- rand(6)
   d3 <- rand(6)
-  
+
   unit(1+d1 + 1+d2 + 1+d3)
 end
 
@@ -13,7 +13,7 @@ roll_3d6_b = proc do
   d1 <- rand(6)
   d2 <- rand(6)
   d3 <- rand(6)
-  
+
   if [d1, d2, d3].include?(5)
     run do
       d4 <- rand(6)

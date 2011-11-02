@@ -6,20 +6,20 @@ Example:
 
     class Array
       include Monad
-      
+
       def self.unit x
         [x]
       end
-      
+
       def bind &f
         map(&f).inject([]){ |a,b| a+b }
       end
     end
-    
+
     Array.run do
       x <- ["first", "second"]
       y <- ["once", "twice"]
-  
+
       unit("#{x} cousin #{y} removed")
     end
 
