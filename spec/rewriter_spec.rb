@@ -2,8 +2,10 @@ require File.join(File.dirname(__FILE__), 'spec_helper')
 
 describe "Rewriter" do
   it "leaves uninteresting blocks alone" do
-    block = proc { x + y }
-    process(block.to_sexp).should == block.to_sexp
+    in_block  = proc { x + y }
+    out_block = proc { x + y }
+
+    process(in_block.to_sexp).should == out_block.to_sexp
   end
 
   it "rewrites the <- operator" do
@@ -18,7 +20,10 @@ describe "Rewriter" do
       end
     end
 
-    process(in_block.to_method.to_sexp)[2].should == out_block.to_sexp
+    # puts DoNotation.pp(in_block.to_sexp)
+    # puts DoNotation.pp(out_block.to_sexp)
+
+    process(in_block.to_sexp).should == out_block.to_sexp
   end
 
   it "rewrites multiple <- operators" do
@@ -36,10 +41,13 @@ describe "Rewriter" do
       end
     end
 
-    process(in_block.to_method.to_sexp)[2].should == out_block.to_sexp
+    # puts DoNotation.pp(in_block.to_sexp)
+    # puts DoNotation.pp(out_block.to_sexp)
+
+    process(in_block.to_sexp).should == out_block.to_sexp
   end
 
   def process(sexp)
-    DoNotation::Rewriter.new.process(sexp).to_a
+    DoNotation::Rewriter.new.process(sexp)
   end
 end
