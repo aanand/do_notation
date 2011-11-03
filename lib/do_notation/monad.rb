@@ -1,19 +1,13 @@
 module Monad
-  module ClassMethods
-    def run &block
-      DoNotation.run(self, &block)
-    end
-
-    def bind_const value, &block
-      bind(value) { block.call }
-    end
-
-    def compose a, b
-      bind_const(a) { b }
-    end
+  def run &block
+    DoNotation.run(self, &block)
   end
 
-  def self.included m
-    m.extend ClassMethods
+  def bind_const value, &block
+    bind(value) { block.call }
+  end
+
+  def compose a, b
+    bind_const(a) { b }
   end
 end

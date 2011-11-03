@@ -1,5 +1,5 @@
 module Identity
-  include Monad
+  extend Monad
 
   class << self
     def unit(obj)

@@ -1,7 +1,7 @@
 require 'do_notation/monad_plus'
 
 class Array
-  include Monad
+  extend Monad
 
   def self.unit x
     [x]
