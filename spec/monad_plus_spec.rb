@@ -3,24 +3,24 @@ require 'do_notation/monads/array'
 require 'do_notation/monads/maybe'
 
 describe "MonadPlus:" do
-  specify "mzero >>= f = mzero" do
-    Array.bind(Array.mzero){ |x| unit(x+1) }.should == Array.mzero
-    Maybe.bind(Maybe.mzero){ |x| unit(x+1) }.should == Maybe.mzero
-  end
+  [Maybe, Array].each do |monad|
+    describe monad do
+      specify "mzero >>= f = mzero" do
+        monad.bind(monad.mzero){ |x| unit(x+1) }.should == monad.mzero
+      end
 
-  specify "compose(v, mzero) = mzero" do
-    Array.compose(Array.unit(1), Array.mzero).should == Array.mzero
-    Maybe.compose(Maybe.unit(1), Maybe.mzero).should == Maybe.mzero
-  end
+      specify "v >> mzero = mzero" do
+        monad.compose(monad.unit(1), monad.mzero).should == monad.mzero
+      end
 
-  specify "mzero `mplus` m = m" do
-    Array.mplus(Array.mzero, Array.unit(1)).should == Array.unit(1)
-    Maybe.mplus(Maybe.mzero, Maybe.unit(1)).should == Maybe.unit(1)
-  end
+      specify "mzero `mplus` m = m" do
+        monad.mplus(monad.mzero, monad.unit(1)).should == monad.unit(1)
+      end
 
-  specify "m `mplus` mzero = m" do
-    Array.mplus(Array.unit(1), Array.mzero).should == Array.unit(1)
-    Maybe.mplus(Maybe.unit(1), Maybe.mzero).should == Maybe.unit(1)
+      specify "m `mplus` mzero = m" do
+        monad.mplus(monad.unit(1), monad.mzero).should == monad.unit(1)
+      end
+    end
   end
 
   specify "guard() prunes the execution tree" do
