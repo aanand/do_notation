@@ -15,7 +15,7 @@ describe "Rewriter" do
     end
 
     out_block = proc do
-      1.bind do |x|
+      bind 1 do |x|
         y
       end
     end
@@ -31,8 +31,8 @@ describe "Rewriter" do
     end
 
     out_block = proc do
-      1.bind do |x|
-        2.bind do |y|
+      bind 1 do |x|
+        bind 2 do |y|
           z
         end
       end
@@ -50,9 +50,9 @@ describe "Rewriter" do
     end
 
     out_block = proc do
-      1.bind do |x|
-        do_something.bind_const do
-          2.bind do |y|
+      bind 1 do |x|
+        bind_const(do_something) do
+          bind 2 do |y|
             z
           end
         end

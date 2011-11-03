@@ -7,8 +7,8 @@ class Array
     [x]
   end
 
-  def bind &f
-    map(&f).inject([], &:+)
+  def self.bind value, &f
+    value.map(&f).inject([], &:+)
   end
 
   extend MonadPlus

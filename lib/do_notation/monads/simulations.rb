@@ -26,9 +26,9 @@ class Simulation
     end
   end
 
-  def bind(&b)
-    self.class.new do |s|
-      x, s = @f.call(s)
+  def self.bind(simulation, &b)
+    self.new do |s|
+      x, s = simulation.f.call(s)
       b.call(x).f.call(s)
     end
   end
@@ -61,12 +61,12 @@ class Distribution
     new((0...n).map{|i| [i, p]})
   end
 
-  def bind(&b)
-    if @a.empty?
-      self.class.wrap([])
+  def self.bind(distribution, &b)
+    if distribution.a.empty?
+      wrap([])
     else
-      x, p = @a[0]
-      self.class.wrap(mulp(p, b.call(x)) + self.class.new(@a[1..-1]).bind(&b).a)
+      x, p = distribution.a[0]
+      wrap(mulp(p, b.call(x)) + bind(self.new(distribution.a[1..-1]), &b).a)
     end
   end
 
@@ -77,7 +77,7 @@ class Distribution
   end
 
   private
-  def mulp(p, l)
+  def self.mulp(p, l)
     l.a.map{|x, p1| [x, p * p1]}
   end
 end
@@ -107,8 +107,8 @@ class Expectation
     end
   end
 
-  def bind(&b)
-    self.class.wrap{|k| @f.call(lambda{|x| b.call(x).f.call(k)}) }
+  def self.bind(expectation, &b)
+    wrap{|k| expectation.f.call(lambda{|x| b.call(x).f.call(k)}) }
   end
 
   def play(x)

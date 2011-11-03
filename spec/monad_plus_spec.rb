@@ -4,8 +4,8 @@ require 'do_notation/monads/maybe'
 
 describe "MonadPlus:" do
   specify "mzero >>= f = mzero" do
-    Array.mzero.bind{ |x| unit(x+1) }.should == Array.mzero
-    Maybe.mzero.bind{ |x| unit(x+1) }.should == Maybe.mzero
+    Array.bind(Array.mzero){ |x| unit(x+1) }.should == Array.mzero
+    Maybe.bind(Maybe.mzero){ |x| unit(x+1) }.should == Maybe.mzero
   end
 
   specify "v >> mzero = mzero" do

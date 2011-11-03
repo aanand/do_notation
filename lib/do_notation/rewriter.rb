@@ -30,14 +30,14 @@ class DoNotation::Rewriter
       end
 
       [s(:iter,
-         s(:call, expression, :bind, s(:arglist)),
+         s(:call, nil, :bind, s(:arglist, expression)),
          s(:lasgn, var_name),
          *body)]
     elsif exp.empty?
       [head]
     else
       [s(:iter,
-         s(:call, head, :bind_const, s(:arglist)),
+         s(:call, nil, :bind_const, s(:arglist, head)),
          nil,
          *rewrite_assignments(exp))]
     end

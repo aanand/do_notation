@@ -7,11 +7,11 @@ class Maybe < Struct.new(:value)
     self.new(value)
   end
 
-  def bind &f
-    if value.nil?
-      self
+  def self.bind maybe, &f
+    if maybe.value.nil?
+      maybe
     else
-      f.call(value)
+      f.call(maybe.value)
     end
   end
 

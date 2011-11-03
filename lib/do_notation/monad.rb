@@ -3,14 +3,14 @@ module Monad
     def run &block
       DoNotation.run(self, &block)
     end
-  end
 
-  def bind_const &block
-    bind { |_| block.call() }
+    def bind_const value, &block
+      bind(value) { block.call }
+    end
   end
 
   def >> n
-    bind_const { n }
+    self.class.bind_const(self) { n }
   end
 
   def self.included m
