@@ -8,19 +8,19 @@ describe "MonadPlus:" do
     Maybe.bind(Maybe.mzero){ |x| unit(x+1) }.should == Maybe.mzero
   end
 
-  specify "v >> mzero = mzero" do
-    ([1,2,3] >> Array.mzero).should == Array.mzero
-    (Maybe.unit(1) >> Maybe.mzero).should == Maybe.mzero
+  specify "compose(v, mzero) = mzero" do
+    Array.compose(Array.unit(1), Array.mzero).should == Array.mzero
+    Maybe.compose(Maybe.unit(1), Maybe.mzero).should == Maybe.mzero
   end
 
   specify "mzero `mplus` m = m" do
-    Array.mzero.mplus([1,2,3]).should == [1,2,3]
-    Maybe.mzero.mplus(Maybe.unit(1)).should == Maybe.unit(1)
+    Array.mplus(Array.mzero, Array.unit(1)).should == Array.unit(1)
+    Maybe.mplus(Maybe.mzero, Maybe.unit(1)).should == Maybe.unit(1)
   end
 
   specify "m `mplus` mzero = m" do
-    [1,2,3].mplus(Array.mzero).should == [1,2,3]
-    Maybe.unit(1).mplus(Maybe.mzero).should == Maybe.unit(1)
+    Array.mplus(Array.unit(1), Array.mzero).should == Array.unit(1)
+    Maybe.mplus(Maybe.unit(1), Maybe.mzero).should == Maybe.unit(1)
   end
 
   specify "guard() prunes the execution tree" do

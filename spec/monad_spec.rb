@@ -28,8 +28,8 @@ describe "Monad.run" do
       unit(x+y)
     end
 
-    Array.run(&block).should == [3]
-    Maybe.run(&block).should == Maybe.new(3)
+    Array.run(&block).should == Array.unit(3)
+    Maybe.run(&block).should == Maybe.unit(3)
   end
 
   specify "should be nestable" do
@@ -58,9 +58,9 @@ describe "Monad.run" do
   end
 end
 
-describe 'Monad#>>' do
+describe 'compose' do
   specify "should compose two values, discarding the first" do
-    ([1] >> [2]).should == [2]
+    Array.compose([1], [2]).should == [2]
   end
 end
 

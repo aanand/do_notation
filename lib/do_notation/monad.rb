@@ -7,10 +7,10 @@ module Monad
     def bind_const value, &block
       bind(value) { block.call }
     end
-  end
 
-  def >> n
-    self.class.bind_const(self) { n }
+    def compose a, b
+      bind_const(a) { b }
+    end
   end
 
   def self.included m

@@ -1,17 +1,17 @@
 require 'do_notation/monad_plus'
 
-class Maybe < Struct.new(:value)
+class Maybe
   include Monad
 
   def self.unit value
-    self.new(value)
+    value
   end
 
-  def self.bind maybe, &f
-    if maybe.value.nil?
-      maybe
+  def self.bind value, &f
+    if value.nil?
+      nil
     else
-      f.call(maybe.value)
+      f.call(value)
     end
   end
 
@@ -21,11 +21,11 @@ class Maybe < Struct.new(:value)
     unit(nil)
   end
 
-  def mplus m
-    if value.nil?
-      m
+  def self.mplus a, b
+    if b.nil?
+      a
     else
-      self
+      b
     end
   end
 end

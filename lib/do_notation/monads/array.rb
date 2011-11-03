@@ -17,5 +17,7 @@ class Array
     []
   end
 
-  alias_method :mplus, :+
+  def self.mplus(a, b)
+    a + b
+  end
 end

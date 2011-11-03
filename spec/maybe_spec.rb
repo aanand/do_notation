@@ -3,24 +3,24 @@ require 'do_notation/monads/maybe'
 
 describe "Maybe:" do
   specify "one or more nils results in nil" do
-    maybe = Maybe.run do
-      x <- unit(1)
-      y <- unit(nil)
+    value = Maybe.run do
+      x <- 1
+      y <- nil
 
-      unit(x+y)
+      x + y
     end
 
-    maybe.value.should == nil
+    value.should == nil
   end
 
   specify "all non-nil results in complete calculation" do
-    maybe = Maybe.run do
-      x <- unit(1)
-      y <- unit(2)
+    value = Maybe.run do
+      x <- 1
+      y <- 2
 
-      unit(x+y)
+      x + y
     end
 
-    maybe.value.should == 3
+    value.should == 3
   end
 end
