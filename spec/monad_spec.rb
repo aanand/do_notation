@@ -28,8 +28,9 @@ describe "Monad.run" do
       unit(x+y)
     end
 
-    Array.run(&block).should == Array.unit(3)
-    Maybe.run(&block).should == Maybe.unit(3)
+    [Identity, Maybe, Array].each do |monad|
+      monad.run(&block).should == monad.unit(3)
+    end
   end
 
   specify "should be nestable" do
