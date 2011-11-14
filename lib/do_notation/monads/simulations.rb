@@ -2,6 +2,8 @@
 # http://eigenclass.org/hiki/warm-fuzzy-things-for-random-simulations
 # http://eigenclass.org/hiki.rb?c=plugin;plugin=attach_download;p=warm-fuzzy-things-for-random-simulations;file_name=fuzzy-warm-simulations.rb
 
+require 'do_notation'
+
 module PRNG
   def next_state(s); (69069 * s + 5) % (2**32) end
 end

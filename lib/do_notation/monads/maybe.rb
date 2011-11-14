@@ -1,3 +1,4 @@
+require 'do_notation'
 require 'do_notation/monad_plus'
 
 class Maybe

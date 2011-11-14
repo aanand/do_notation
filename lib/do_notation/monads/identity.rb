@@ -1,3 +1,5 @@
+require 'do_notation'
+
 module Identity
   extend Monad
 
